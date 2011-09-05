@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlambotTest", "..\SlambotTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slambot", "Slambot\Slambot.csproj", "{1ECB9E5C-EA19-424A-A51A-B498C5B05EF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlambotCore", "..\SlambotCore\SlambotCore.csproj", "{9885500B-C982-42DF-A3A1-6EAA2715A119}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{1ECB9E5C-EA19-424A-A51A-B498C5B05EF7}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1ECB9E5C-EA19-424A-A51A-B498C5B05EF7}.Release|x86.ActiveCfg = Release|x86
 		{1ECB9E5C-EA19-424A-A51A-B498C5B05EF7}.Release|x86.Build.0 = Release|x86
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9885500B-C982-42DF-A3A1-6EAA2715A119}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
