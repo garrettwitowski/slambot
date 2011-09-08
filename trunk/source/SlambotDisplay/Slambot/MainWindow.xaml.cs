@@ -22,6 +22,7 @@ namespace Slambot
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }
