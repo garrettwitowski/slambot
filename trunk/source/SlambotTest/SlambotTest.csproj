@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CallbackManagerTest.cs" />
     <Compile Include="FrameStoreTest.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="VectorPoseTest.cs" />
     <Compile Include="NilRGBImageSourceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

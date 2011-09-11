@@ -12,7 +12,7 @@ namespace Slambot
     /// <param name="depth">Depth Image as 16 bit grayscale</param>
     public delegate UInt64 RGBDCallback(System.Drawing.Image rgb, System.Drawing.Image depth);
 
-    interface IRGBDImageSource
+    public interface IRGBDImageSource
     {
         /// <summary>
         /// Sets the max rate of images allowed to come from the RGBDImageSource.  Images will be discarded to
