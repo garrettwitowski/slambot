@@ -10,7 +10,7 @@ namespace Slambot
     /// </summary>
     /// <param name="rgb">RGB Image</param>
     /// <param name="depth">Depth Image as 16 bit grayscale</param>
-    public delegate void RGBDCallback(System.Drawing.Image rgb, System.Drawing.Image depth);
+    public delegate UInt64 RGBDCallback(System.Drawing.Image rgb, System.Drawing.Image depth);
 
     interface IRGBDImageSource
     {

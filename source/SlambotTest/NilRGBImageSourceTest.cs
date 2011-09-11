@@ -15,10 +15,11 @@ namespace SlambotTest
     [TestFixture]
     public class NilRGBImageSourceTest
     {
-        private int i;
-        private void RGBFunction(System.Drawing.Image rgb, System.Drawing.Image depth)
+        private UInt64 i;
+        private UInt64 RGBFunction(System.Drawing.Image rgb, System.Drawing.Image depth)
         {
             i++;
+            return i;
         }
 
         [Test]
