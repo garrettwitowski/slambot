@@ -24,7 +24,7 @@ namespace Slambot
 
         // Constructors
         public Vector3(Double X, Double Y, Double Z):this() { this.X = X; this.Y = Y; this.Z = Z; }
-        public Vector3(Vector3 orig):this() { this.X = orig.X; this.Y = orig.Y; this.Z = orig.Z; }
+        public Vector3(Vector3 orig) : this() { this.X = orig.X; this.Y = orig.Y; this.Z = orig.Z; }
 
         // Basic Math Operations
         public static Vector3 operator +(Vector3 a, Vector3 b) 
@@ -105,6 +105,7 @@ namespace Slambot
             throw new NotImplementedException("TODO: implement Vector3::Cross()");
         }
     }
+
 
     /// <summary>
     /// Pose of the robot includes position, direction, and rotations.  Similar to a view matrix in XNA.
