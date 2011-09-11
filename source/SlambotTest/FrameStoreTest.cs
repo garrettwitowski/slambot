@@ -8,22 +8,12 @@ using NUnit;
 using Slambot;
 using System.Drawing;
 
+
 namespace SlambotTest
 {
     [TestFixture]
     class FrameStoreTest
     {
-        //Helper functions
-        protected Image GetImage(int i)
-        {
-            return Image.FromFile("Data\\image" + i + ".tiff");
-        }
-
-        protected Image GetDepth(int i)
-        {
-            return Image.FromFile("Data\\depth" + i + ".tiff");
-        }
-
         //Test functions
         [Test]
         public void ConstructorWorks()
@@ -38,10 +28,10 @@ namespace SlambotTest
             var fs = new FrameStoreBase();
             //load and add two RGBDs
             UInt64 id;
-            var i0 = GetImage(0);
-            var d0 = GetDepth(0);
-            var i1 = GetImage(1);
-            var d1 = GetDepth(1);
+            var i0 = Util.GetImage(0);
+            var d0 = Util.GetDepth(0);
+            var i1 = Util.GetImage(1);
+            var d1 = Util.GetDepth(1);
             id = fs.OnNewRGBD(i0, d0);
             Assert.That(id, Is.EqualTo(0));
             id = fs.OnNewRGBD(i1, d1);
@@ -67,11 +57,11 @@ namespace SlambotTest
         {
             var fs = new FrameStoreBase();
             //Send the first image and add an attribute
-            fs.OnNewRGBD(GetImage(0), GetDepth(0));
+            fs.OnNewRGBD(Util.GetImage(0), Util.GetDepth(0));
             fs.GetAttributes(0).Add("key", "image0");
             Assert.That(fs.GetAttributes(0).Count, Is.EqualTo(1));
             //Send the second image, and add an attribute
-            fs.OnNewRGBD(GetImage(1), GetDepth(1));
+            fs.OnNewRGBD(Util.GetImage(1), Util.GetDepth(1));
             fs.GetAttributes(1).Add("key", "image1");
             Assert.That(fs.GetAttributes(1).Count, Is.EqualTo(1));
             //Read both keys back and check them

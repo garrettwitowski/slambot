@@ -17,9 +17,9 @@ namespace Slambot
     //      * configuration should only be specified in a single constructor,
     //        not repeated across multiple constructors
 
-    class CallbackManager
+    public class CallbackManager
     {
-        public enum CbPriority
+        public enum Priority
         {
             FindLandmarks,
             EstimatePose,
@@ -33,10 +33,15 @@ namespace Slambot
         /// <param name="FrameId">Frame identifier</param>
         public delegate void FrameCallback(UInt64 FrameId);
 
-
+        /// <summary>
+        /// Upstream source of RGBD Images
+        /// </summary>
         protected IRGBDImageSource imageSource;
+
+        /// <summary>
+        /// Storage for all these RGBD Images and attributes
+        /// </summary>
         protected IFrameStore FrameStore;
-        protected RGBDCallback rgbdCallback;
 
         //FFV: This is clunky.  Switch this code over to use something like an Array<List<FrameCallback>>?
         protected List<FrameCallback> FLCallbacks;
@@ -55,7 +60,7 @@ namespace Slambot
             //Register the RGBD data with the Frame Store
             //Get the ID of the frame to pass on to the other callers
             UInt64 id;
-            id = rgbdCallback(rgb, depth);
+            id = FrameStore.OnNewRGBD(rgb, depth);
             //Call each of the callbacks in priority order
             foreach (var cb in FLCallbacks)
                 cb(id);
@@ -68,34 +73,31 @@ namespace Slambot
             return id;    
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rgbdSource"></param>
         public CallbackManager(IRGBDImageSource rgbdSource, IFrameStore frameStore)
         {
+            //Register upstream with our RGBD source
             imageSource = rgbdSource;
             imageSource.RegisterRGBDCallback(OnNewRGBD);
+            //Remember the FrameStore
             this.FrameStore = frameStore;
+            //Initialize empty callback lists
+            FLCallbacks = new List<FrameCallback>();
+            EPCallbacks = new List<FrameCallback>();
+            SLAMCallbacks = new List<FrameCallback>();
+            DisplayCallbacks = new List<FrameCallback>();
         }
 
-        public void RegisterRGBDCallback(RGBDCallback Cb) 
+        public IFrameStore RegisterFrameCallback(FrameCallback Cb, Priority Priority) 
         {
-            if (rgbdCallback == null)
-                throw new ArgumentException("Only a single RGBD callback can be registered");
-            rgbdCallback = Cb;
-        }
-
-        public void RegisterFrameCallback(FrameCallback Cb, CbPriority Priority) 
-        {
-            if(Priority == CbPriority.FindLandmarks)
+            if(Priority == Priority.FindLandmarks)
                 FLCallbacks.Add(Cb);
-            else if (Priority == CbPriority.EstimatePose)
+            else if (Priority == Priority.EstimatePose)
                 EPCallbacks.Add(Cb);
-            else if (Priority == CbPriority.SLAM)
+            else if (Priority == Priority.SLAM)
                 SLAMCallbacks.Add(Cb);
-            else if (Priority == CbPriority.Display)
+            else if (Priority == Priority.Display)
                 DisplayCallbacks.Add(Cb);
+            return FrameStore;
         }
     }
 }

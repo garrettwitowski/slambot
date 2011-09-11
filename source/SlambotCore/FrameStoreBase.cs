@@ -27,6 +27,14 @@ namespace Slambot
             return true;
         }
 
+        public UInt64 Count()
+        {
+            int count = rgbStore.Count;
+            if ((count != depthStore.Count) || (count != attrStore.Count))
+                throw new ApplicationException("Frame Store internal storage is inconsistent and possibly corrupt");
+            return (UInt64)count;
+        }
+
         public UInt64 OnNewRGBD(System.Drawing.Image rgb, System.Drawing.Image depth)
         {
             int id;
