@@ -41,16 +41,25 @@ namespace Slambot
             targetImage.Stretch = RGBImage.Stretch;
         } // end of convertToWpf
 
+        public BitmapSource loadTiff(String fromPath)
+        {
+            Stream imageStreamSource = new FileStream(fromPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            TiffBitmapDecoder decoder = new TiffBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            BitmapSource bitmapSource = decoder.Frames[0];
+            return bitmapSource;
+        }
+
         public void onClick(object sender, RoutedEventArgs e) 
         {
             if (whichImageNumber < 11 && !(RGBImage.Equals(null)) && !(DepthImage.Equals(null)))
             {
                 whichImageNumber += 5;
                 //FFV: This needs to be implemented later to use the iterator instead of hardcoding it for the individual images
-                System.Drawing.Image img = System.Drawing.Image.FromFile("Data\\image700.tiff");
-                ConvertToWPF(img, RGBImage);
-                System.Drawing.Image depth = System.Drawing.Image.FromFile("Data\\image700.tiff");
-                ConvertToWPF(depth, DepthImage);
+                //System.Drawing.Image img = System.Drawing.Image.FromFile("Data\\image700.tiff");
+                //ConvertToWPF(img, RGBImage);
+                //System.Drawing.Image depth = System.Drawing.Image.FromFile("Data\\depth700.tiff");
+                RGBImage.Source = loadTiff("Data\\image700.tiff");
+                DepthImage.Source = loadTiff("Data\\depth700.tiff");
             } //end of if
         } //end of onClick()
 

@@ -113,23 +113,29 @@ namespace SlambotTest
         [Test]
         public void VectorCross()
         {
-            var v1 = new Vector3(1.0, 0, 0);
-            var v2 = new Vector3(0, 1, 0);
-            var v3 = new Vector3(0, 0, 1);
-
-            Assert.That(Vector3.Cross(v1, v2), Is.EqualTo(v3));
+            var v1 = new Vector3(5, 1, 4);
+            var v2 = new Vector3(-1, 0, 2);
+            var v3 = new Vector3(2, -14, 1);
+            var res = Vector3.Cross(v1,v2);
+            Assert.That(res.X, Is.EqualTo(2.0));
+            Assert.That(v3.X, Is.EqualTo(2.0));
+            Assert.That(res.X, Is.EqualTo(v3.X));
+            Assert.That(res.Y, Is.EqualTo(-14));
+            Assert.That(v3.Y, Is.EqualTo(-14));
+            Assert.That(res.Y, Is.EqualTo(v3.Y));
+            Assert.That(res.Z, Is.EqualTo(1));
+            Assert.That(v3.Z, Is.EqualTo(1));
+            Assert.That(res.Z, Is.EqualTo(v3.Z));
+            Assert.That(Is.Equals(v3,res));
         }
 
         [Test]
         public void VectorDot()
         {
-            var v1 = new Vector3(1.0, 0, 0);
-            var v2 = new Vector3(0, 1, 0);
-            var v3 = new Vector3(0, 0, 1);
-
-            Assert.That(Vector3.Dot(v1, v2), Is.EqualTo(0));
-            Assert.That(Vector3.Dot(v2, v3), Is.EqualTo(0));
-            Assert.That(Vector3.Dot(v3, v1), Is.EqualTo(0));
+            var v1 = new Vector3(5, 1, 4);
+            var v2 = new Vector3(-1, 0, 2);
+            double dotP = Vector3.Dot(v1, v2);
+            Assert.That(dotP, Is.EqualTo(3));
         }
 
 

@@ -91,7 +91,15 @@ namespace Slambot
         /// <returns>Dot product</returns>
         public static Double Dot(Vector3 a, Vector3 b)
         {
-            throw new NotImplementedException("TODO: implement Vector3::Dot()");
+            //throw new NotImplementedException("TODO: implement Vector3::Dot()");
+            double x1 = a.X;
+            double y1 = a.Y;
+            double z1 = a.Z;
+            double x2 = b.X;
+            double y2 = b.Y;
+            double z2 = b.Z;
+            double dotP = x1 * x2 + y1 * y2 + z1 * z2;
+            return dotP;
         }
 
         /// <summary>
@@ -102,7 +110,21 @@ namespace Slambot
         /// <returns>Cross product</returns>
         public static Vector3 Cross(Vector3 a, Vector3 b)
         {
-            throw new NotImplementedException("TODO: implement Vector3::Cross()");
+            //throw new NotImplementedException("TODO: implement Vector3::Cross()");
+            double x1 = a.X;
+            double y1 = a.Y;
+            double z1 = a.Z;
+            double x2 = b.X;
+            double y2 = b.Y;
+            double z2 = b.Z;
+            double [,] theVectors = new double [3,3] {{1, 1, 1},
+                                                      {x1,y1,z1},
+                                                      {x2,y2,z2}};
+            double resultX = theVectors[0, 0] * (theVectors[1, 1] * theVectors[2, 2] - theVectors[2, 1] * theVectors[1, 2]);
+            double resultY = theVectors[0, 1] * (theVectors[1, 0] * theVectors[2, 2] - theVectors[2, 0] * theVectors[1, 2]);
+            double resultZ = theVectors[0, 2] * (theVectors[1, 0] * theVectors[2, 1] - theVectors[2, 0] * theVectors[1, 1]);
+            Vector3 result = new Vector3(resultX, -resultY, resultZ);
+            return result;
         }
     }
 
