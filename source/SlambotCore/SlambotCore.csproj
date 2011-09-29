@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallbackManager.cs" />
+    <Compile Include="DisplayBase.cs" />
     <Compile Include="FrameStoreBase.cs" />
     <Compile Include="IFrameStore.cs" />
     <Compile Include="IRGBDImageSource.cs" />

@@ -13,43 +13,6 @@ namespace SlambotTest
     //Helper Classes
 
     /// <summary>
-    /// RGBDSourceTester pumps new Images into the SLAM system using PumpNewRGBD().
-    /// Otherwise it is a trivial implementation of IRGBDImageSource.
-    /// </summary>
-    public class RGBDSourceTestStub: IRGBDImageSource 
-    {
-        protected List<RGBDCallback> cbList;
-
-        public RGBDSourceTestStub()
-        {
-            cbList = new List<RGBDCallback>();
-        }
-
-        public void SetFrameInterval(Double seconds)
-        {
-            throw new NotImplementedException("Test stub does not implement all RGBDSource functionality.");
-        }
-
-        public void RegisterRGBDCallback(RGBDCallback cb) 
-        {
-            cbList.Add(cb);
-        }
-
-        /// <summary>
-        /// Pump a new RGBD image through the system
-        /// </summary>
-        /// <param name="rgb">RGB Image</param>
-        /// <param name="depth">Depth Image</param>
-        public UInt64 PumpNewRGBD(Image rgb, Image depth)
-        {
-            UInt64 returnValue=0;
-            foreach(var cb in cbList)
-                returnValue = cb(rgb, depth);
-            return returnValue;
-        }
-    }
-
-    /// <summary>
     /// Increments Count on each new frame
     /// </summary>
     public class CallbackTestStub
