@@ -7,9 +7,9 @@
             <ColumnDefinition Width="419*" />
             <ColumnDefinition Width="472*" />
         </Grid.ColumnDefinitions>
-        <Image Height="317" HorizontalAlignment="Left" Margin="12,48,0,0" Name="RGBImage" Stretch="Fill" VerticalAlignment="Top" Width="390" Source="Data\image0.tiff" />
+        <Image Height="317" HorizontalAlignment="Left" Margin="12,48,0,0" Name="RGBImage" Stretch="Fill" VerticalAlignment="Top" Width="390" Source="Data\image0.png" />
         <Label Content="RGB Image" Height="30" HorizontalAlignment="Center" Margin="256,12,244,0" Name="label1" VerticalAlignment="Top" Width="390" Grid.ColumnSpan="2" />
-        <Image Height="317" HorizontalAlignment="Left" Margin="12,48,0,0" Name="DepthImage" Stretch="Fill" VerticalAlignment="Top" Width="390" Source="Data\depth0.tiff" Grid.Column="1" />
+        <Image Height="317" HorizontalAlignment="Left" Margin="12,48,0,0" Name="DepthImage" Stretch="Fill" VerticalAlignment="Top" Width="390" Source="Data\depth0.png" Grid.Column="1" />
         <Label Content="Depth Image" Height="30" HorizontalAlignment="Center" Margin="47,12,35,0" Name="label2" VerticalAlignment="Top" Width="390" Grid.Column="1" />
         <Button Content="Next Pair" Height="23" HorizontalAlignment="Center" Margin="377,13,439,0" Name="button1" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="onClick" />
     </Grid>
