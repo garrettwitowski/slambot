@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallbackManagerTest.cs" />
+    <Compile Include="DisplayTest.cs" />
     <Compile Include="FrameStoreTest.cs" />
     <Compile Include="LandmarkTest.cs" />
     <Compile Include="Util.cs" />
