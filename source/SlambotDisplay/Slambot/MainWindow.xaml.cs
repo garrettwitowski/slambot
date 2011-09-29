@@ -41,10 +41,10 @@ namespace Slambot
             targetImage.Stretch = RGBImage.Stretch;
         } // end of convertToWpf
 
-        public BitmapSource loadTiff(String fromPath)
+        public BitmapSource loadPng(String fromPath)
         {
             Stream imageStreamSource = new FileStream(fromPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            TiffBitmapDecoder decoder = new TiffBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
             BitmapSource bitmapSource = decoder.Frames[0];
             return bitmapSource;
         }
@@ -58,8 +58,8 @@ namespace Slambot
                 //System.Drawing.Image img = System.Drawing.Image.FromFile("Data\\image700.tiff");
                 //ConvertToWPF(img, RGBImage);
                 //System.Drawing.Image depth = System.Drawing.Image.FromFile("Data\\depth700.tiff");
-                RGBImage.Source = loadTiff("Data\\image700.tiff");
-                DepthImage.Source = loadTiff("Data\\depth700.tiff");
+                RGBImage.Source = loadPng("Data\\image760.png");
+                DepthImage.Source = loadPng("Data\\depth760.png");
             } //end of if
         } //end of onClick()
 
