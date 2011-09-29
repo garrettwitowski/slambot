@@ -13,5 +13,6 @@ namespace Slambot
         Image GetDepth(UInt64 id);
         Dictionary<String, Object> GetAttributes(UInt64 id);
         UInt64 Count();
+        Dictionary<String, Object> GetConfig();
     }
 }

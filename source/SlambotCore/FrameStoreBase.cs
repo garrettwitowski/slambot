@@ -18,6 +18,9 @@ namespace Slambot
         //Actual stored type is Dictionary<String,Object>
         protected ArrayList attrStore;
 
+        //Global attribute store
+        protected Dictionary<String, Object> globalConfig;
+
         protected Boolean DoInternalCheck()
         {
             //Count all items.  We should always have the same number of RGB, Depth, and Attributes
@@ -49,6 +52,7 @@ namespace Slambot
             rgbStore = new ArrayList(defaultCapacity);
             depthStore = new ArrayList(defaultCapacity);
             attrStore = new ArrayList(defaultCapacity);
+            globalConfig = new Dictionary<String, Object>();
         }
 
         public Image GetRGB(UInt64 id)
@@ -64,6 +68,11 @@ namespace Slambot
         public Dictionary<String, Object> GetAttributes(UInt64 id)
         {
             return (Dictionary<String,Object>)attrStore[(int)id];
+        }
+
+        public Dictionary<String, Object> GetConfig()
+        {
+            return (Dictionary<String, Object>)globalConfig;
         }
     }
 }

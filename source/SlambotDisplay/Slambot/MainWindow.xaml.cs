@@ -55,9 +55,6 @@ namespace Slambot
             {
                 whichImageNumber += 5;
                 //FFV: This needs to be implemented later to use the iterator instead of hardcoding it for the individual images
-                //System.Drawing.Image img = System.Drawing.Image.FromFile("Data\\image700.tiff");
-                //ConvertToWPF(img, RGBImage);
-                //System.Drawing.Image depth = System.Drawing.Image.FromFile("Data\\depth700.tiff");
                 RGBImage.Source = loadPng("Data\\image760.png");
                 DepthImage.Source = loadPng("Data\\depth760.png");
             } //end of if

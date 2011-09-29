@@ -45,6 +45,7 @@
     <Compile Include="FrameStoreBase.cs" />
     <Compile Include="IFrameStore.cs" />
     <Compile Include="IRGBDImageSource.cs" />
+    <Compile Include="LandmarkIdentifierBase.cs" />
     <Compile Include="NilRGBImageSource.cs" />
     <Compile Include="Pose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
