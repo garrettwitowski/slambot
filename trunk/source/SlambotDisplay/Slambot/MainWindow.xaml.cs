@@ -21,12 +21,20 @@ namespace Slambot
     /// </summary>
     public partial class MainWindow : Window
     {
-        int whichImageNumber = 0;
+        RGBDSourceManualPump src;
+        FrameStoreBase fs;
+        CallbackManager cbm;
+        LandmarkIdentifierBase lm;
+        DisplayGarrett display;
 
         public MainWindow()
         {
             InitializeComponent();
-
+            src = new RGBDSourceManualPump("C:\\tim\\SLAM");
+            fs = new FrameStoreBase();
+            cbm = new CallbackManager(src, fs);
+            lm = new LandmarkIdentifierBase(cbm);
+            display = new DisplayGarrett(cbm,this);
         }
 
         protected void ConvertToWPF(System.Drawing.Image gdilmg, System.Windows.Controls.Image targetImage)
@@ -39,26 +47,18 @@ namespace Slambot
             targetImage.Width = RGBImage.Width;
             targetImage.Height = RGBImage.Height;
             targetImage.Stretch = RGBImage.Stretch;
-        } // end of convertToWpf
+        }
 
-        public BitmapSource loadPng(String fromPath)
+        public void UpdateGUI(System.Drawing.Image myRGBImage, System.Drawing.Image myDepthImage)
         {
-            Stream imageStreamSource = new FileStream(fromPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-            BitmapSource bitmapSource = decoder.Frames[0];
-            return bitmapSource;
+            ConvertToWPF(myRGBImage, RGBImage);
+            ConvertToWPF(myDepthImage, DepthImage);
         }
 
         public void onClick(object sender, RoutedEventArgs e) 
         {
-            if (whichImageNumber < 11 && !(RGBImage.Equals(null)) && !(DepthImage.Equals(null)))
-            {
-                whichImageNumber += 5;
-                //FFV: This needs to be implemented later to use the iterator instead of hardcoding it for the individual images
-                RGBImage.Source = loadPng("Data\\image760.png");
-                DepthImage.Source = loadPng("Data\\depth760.png");
-            } //end of if
-        } //end of onClick()
+            src.AutoPump(); 
+        }
 
     } //end of MainWindow
-} //end of program
+}

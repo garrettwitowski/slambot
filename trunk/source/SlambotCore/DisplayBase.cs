@@ -12,7 +12,7 @@ namespace Slambot
     {
         protected IFrameStore fs = null;
 
-        public void OnNewFrame(UInt64 id)
+        public virtual void OnNewFrame(UInt64 id)
         {
             //Do something here in children of this class
         }
@@ -21,6 +21,11 @@ namespace Slambot
         {
             //Register the callback and remember our framestore
             fs = cbm.RegisterFrameCallback(OnNewFrame, CallbackManager.Priority.Display);
+        }
+
+        public DisplayBase()
+        {
+
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Slambot
             return new Vector3(a.X / divFactor, a.Y / divFactor, a.Z / divFactor);
         }
 
-        public String ToString()
+        public override String ToString()
         {
             return "["+X+","+Y+","+Z+"]";
         }
