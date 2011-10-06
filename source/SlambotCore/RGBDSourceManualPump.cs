@@ -2,56 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Windows.Media.Imaging;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Navigation;
-
 using System.Drawing;
-using System.Drawing.Imaging;
 
-using Slambot;
-
-namespace SlambotTest
+namespace Slambot
 {
-    public static class Util
-    {
-        /// <summary>
-        /// Load a test RGB Image from the Data directory
-        /// </summary>
-        /// <param name="i">Image index</param>
-        /// <returns>RGB Image</returns>
-        static public Image GetImage(int i)
-        {
-            return Image.FromFile("Data\\image"+i+".png"); 
-        }
-
-        /// <summary>
-        /// Load a test Depth Image from the Data directory
-        /// </summary>
-        /// <param name="i">Image index</param>
-        /// <returns>Depth Image</returns>
-        static public Image GetDepth(int i)
-        {
-            return Image.FromFile("Data\\depth" + i + ".png");
-        }
-    }
-
     /// <summary>
     /// RGBDSourceTester pumps new Images into the SLAM system using PumpNewRGBD().
     /// Otherwise it is a trivial implementation of IRGBDImageSource.
     /// </summary>
-    public class RGBDSourceTestStub : IRGBDImageSource
+    public class RGBDSourceManualPump : IRGBDImageSource
     {
         protected List<RGBDCallback> cbList;
+        protected String filePath="";
+        protected int imageMultiple=10;
+        protected int whichImageNumber=0;
 
-        public RGBDSourceTestStub()
+        public RGBDSourceManualPump()
         {
             cbList = new List<RGBDCallback>();
+        }
+
+        public RGBDSourceManualPump(String filePath, int imageMultiple=10, int whichImageNumber=0)
+        {
+            cbList = new List<RGBDCallback>();
+            this.filePath = filePath;
+            this.imageMultiple = imageMultiple;
+            this.whichImageNumber = whichImageNumber;
         }
 
         public void SetFrameInterval(Double seconds)
@@ -75,6 +51,22 @@ namespace SlambotTest
             foreach (var cb in cbList)
                 returnValue = cb(rgb, depth);
             return returnValue;
+        }
+
+        public UInt64 AutoPump()
+        {
+            if (whichImageNumber > 1000)
+            {
+                whichImageNumber=0;
+            }
+
+            else
+            {
+                whichImageNumber += imageMultiple;
+            }
+
+            return PumpNewRGBD(System.Drawing.Image.FromFile(filePath+"\\image" + whichImageNumber + ".png"),
+                    System.Drawing.Image.FromFile(filePath+"\\depth" + whichImageNumber + ".png"));
         }
     }
 }
