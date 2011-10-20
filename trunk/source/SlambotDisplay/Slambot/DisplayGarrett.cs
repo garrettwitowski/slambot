@@ -14,6 +14,7 @@ namespace Slambot
             var rgb = fs.GetRGB(id);
             var depth = fs.GetDepth(id);
             window.UpdateGUI(rgb, depth);
+            //return additional info to display
         }
 
         public DisplayGarrett(CallbackManager cbm,MainWindow window):base(cbm)

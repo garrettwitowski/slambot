@@ -68,5 +68,8 @@ namespace Slambot
             return PumpNewRGBD(System.Drawing.Image.FromFile(filePath+"\\image" + whichImageNumber + ".png"),
                     System.Drawing.Image.FromFile(filePath+"\\depth" + whichImageNumber + ".png"));
         }
+
+        //make a new class (AutoPumpOnTimer) to pump on a timer (TimedPump)
+        //Using System.Timers.Timer;
     }
 }
