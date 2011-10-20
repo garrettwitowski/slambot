@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Timers;
 
 namespace Slambot
 {
@@ -21,16 +22,16 @@ namespace Slambot
     /// </summary>
     public partial class MainWindow : Window
     {
-        RGBDSourceManualPump src;
         FrameStoreBase fs;
         CallbackManager cbm;
         LandmarkIdentifierBase lm;
         DisplayGarrett display;
+        RGBDSourceAutoPump src;
 
         public MainWindow()
         {
             InitializeComponent();
-            src = new RGBDSourceManualPump("C:\\tim\\SLAM");
+            src = new RGBDSourceAutoPump("C:\\tim\\SLAM",10,0,0.2f);
             fs = new FrameStoreBase();
             cbm = new CallbackManager(src, fs);
             lm = new LandmarkIdentifierBase(cbm);
@@ -57,8 +58,8 @@ namespace Slambot
 
         public void onClick(object sender, RoutedEventArgs e) 
         {
-            src.AutoPump(); 
+            src.Start();
         }
 
-    } //end of MainWindow
+    } 
 }
